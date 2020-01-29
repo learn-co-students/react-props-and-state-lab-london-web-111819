@@ -46,10 +46,13 @@ class App extends React.Component {
   }
 
   onAdoptPet = (id) => {
-    const selectedPet = this.state.pets.filter(pet => pet.id = id)
-  
-    selectedPet[0].isAdopted = true
-   
+    const petsToChange = [...this.state.pets]
+    const clonedPet = petsToChange.find(pet => pet.id === id)
+    const indexToChange = petsToChange.indexOf(clonedPet)
+    petsToChange[indexToChange].isAdopted = true
+    this.setState({
+      pets: petsToChange
+    })
   }
 
   render() {
